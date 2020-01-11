@@ -1,14 +1,18 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { View } from "react-native";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import reducer from "./reducers";
+import Decks from "./components/decks";
 
-class App extends Component {
+export default class App extends Component {
   render() {
     return (
-      <View>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
+      <Provider store={createStore(reducer)}>
+        <View>
+          <Decks />
+        </View>
+      </Provider>
     );
   }
 }
-
-export default App;
