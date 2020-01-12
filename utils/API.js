@@ -1,7 +1,6 @@
-import React from 'react';
 import {AsyncStorage} from 'react-native'
 
-const DECKS_STORAGE_KEY = 'santhosh.decks'
+const DECKS_STORAGE_KEY = 'DECK_STORAGE_KEY'
 
 function dummyDecks() {
   return {

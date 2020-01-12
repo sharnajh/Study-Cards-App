@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 
-class Deck extends Component {
+class DeckItem extends Component {
   renderDeckView = () => {
     const { navigation, deck } = this.props;
     navigation.navigate("DeckView", { deck });
@@ -21,4 +21,4 @@ class Deck extends Component {
   }
 }
 
-export default Deck;
+export default DeckItem;

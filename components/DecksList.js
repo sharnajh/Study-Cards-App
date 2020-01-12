@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { getDecks } from "../utils/API";
 import { loadDecks } from "../actions";
 import { StyleSheet, Text, View, FlatList } from "react-native";
-import Deck from "./Deck";
+import DeckItem from "./DeckItem";
 
 class DecksList extends Component {
   componentDidMount() {
@@ -17,7 +17,7 @@ class DecksList extends Component {
         <FlatList
           data={Object.values(decks)}
           renderItem={({ item }) => (
-            <Deck
+            <DeckItem
               navigation={this.props.navigation}
               deck={item}
             />
