@@ -10,15 +10,18 @@ class AddCard extends Component {
     answer: ""
   };
   submitCard = () => {
+    const { addCard, navigation, title } = this.props;
     const { question, answer } = this.state;
-    const { addCard, deck } = this.props;
-    addCard(deck.title, { question, answer }); 
-    addCardToDeck(deck.title, { question, answer }); 
+    addCardToDeck(title, { question, answer });
+    addCard(title, { question, answer });
+    this.setState({ question: "", answer: "" });
+    navigation.navigate("DeckView", { title });
   };
   render() {
+    const { title } = this.props;
     return (
       <View>
-        <Text>Add Card</Text>
+        <Text>{title}</Text>
         <TextInput
           placeholder="Type the question here"
           onChangeText={question => this.setState({ question })}
@@ -37,19 +40,11 @@ class AddCard extends Component {
   }
 }
 
-function mapStateToProps(decks, { navigation }) {
-  const { deckTitle } = navigation.state.params;
+const mapStateToProps = ({ decks }, { navigation }) => {
+  const { title } = navigation.state.params;
   return {
-    deck: decks[deckTitle] || {}
+    title
   };
-}
+};
 
-function mapDispatchToProps(dispatch, { navigation }) {
-  const { deckTitle } = navigation.state.params;
-
-  return {
-    goBack: () => navigation.goBack(),
-    addCard: (deckTitle, card) => dispatch(addCard(deckTitle, card))
-  };
-}
-export default connect(mapStateToProps, mapDispatchToProps)(AddCard);
+export default connect(mapStateToProps, { addCard })(AddCard);
