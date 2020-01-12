@@ -37,10 +37,6 @@ export function getDecks() {
   return AsyncStorage.getItem(DECKS_STORAGE_KEY).then(parseDecks)
 }
 
-export function getDeck(id) {
-  return getDecks().then((decks) => (decks[id]))
-}
-
 export function saveDeckTitle(deckTitle) {
   getDecks().then((decks) => {
     if (!decks[deckTitle]) {

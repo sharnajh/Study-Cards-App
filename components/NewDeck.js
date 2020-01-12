@@ -4,6 +4,9 @@ import { connect } from "react-redux";
 import { saveDeckTitle } from "../utils/API";
 import { addDeck } from "../actions";
 
+// Cannot be blank
+// Title cannot already exist
+
 class NewDeck extends Component {
   state = {
     title: ""
@@ -33,7 +36,7 @@ class NewDeck extends Component {
   }
 }
 
-const mapStateToProps = ({ decks }) => {
+const mapStateToProps = (decks) => {
   return {
     decks
   };

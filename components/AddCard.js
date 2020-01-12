@@ -4,24 +4,26 @@ import { connect } from "react-redux";
 import { addCardToDeck } from "../utils/API";
 import { addCard } from "../actions";
 
+// Cannot be blank
+
 class AddCard extends Component {
   state = {
     question: "",
     answer: ""
   };
   submitCard = () => {
-    const { addCard, navigation, title } = this.props;
+    const { addCard, navigation, deck } = this.props;
     const { question, answer } = this.state;
-    addCardToDeck(title, { question, answer });
-    addCard(title, { question, answer });
+    addCardToDeck(deck.title, { question, answer });
+    addCard(deck.title, { question, answer });
     this.setState({ question: "", answer: "" });
-    navigation.navigate("DeckView", { title });
+    navigation.navigate("DeckView", { deck });
   };
   render() {
-    const { title } = this.props;
+    const { deck } = this.props;
     return (
       <View>
-        <Text>{title}</Text>
+        <Text>{deck.title}</Text>
         <TextInput
           placeholder="Type the question here"
           onChangeText={question => this.setState({ question })}
@@ -41,9 +43,9 @@ class AddCard extends Component {
 }
 
 const mapStateToProps = ({ decks }, { navigation }) => {
-  const { title } = navigation.state.params;
+  const { deck } = navigation.state.params;
   return {
-    title
+    deck
   };
 };
 

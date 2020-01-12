@@ -18,10 +18,8 @@ class DecksList extends Component {
           data={Object.values(decks)}
           renderItem={({ item }) => (
             <Deck
-              id={item.title}
-              title={item.title}
-              questions={item.questions}
               navigation={this.props.navigation}
+              deck={item}
             />
           )}
           keyExtractor={item => item.title}

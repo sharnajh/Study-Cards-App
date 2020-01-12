@@ -2,18 +2,18 @@ import React, { Component } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 
 class Deck extends Component {
-  renderDeckView = (title) => {
-    const { navigation } = this.props
-    navigation.navigate("DeckView", {title})
-  }
+  renderDeckView = () => {
+    const { navigation, deck } = this.props;
+    navigation.navigate("DeckView", { deck });
+  };
   render() {
-    const { title, questions } = this.props;
+    const { deck } = this.props;
     return (
       <View>
-        <TouchableOpacity onPress={() => this.renderDeckView(title)}>
+        <TouchableOpacity onPress={this.renderDeckView}>
           <View>
-            <Text>{title}</Text>
-            <Text>{questions.length} Cards</Text>
+            <Text>{deck.title}</Text>
+            <Text>{deck.questions.length} Cards</Text>
           </View>
         </TouchableOpacity>
       </View>
