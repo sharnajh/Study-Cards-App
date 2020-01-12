@@ -14,9 +14,16 @@ class DecksList extends Component {
     const { decks } = this.props;
     return (
       <View>
-        <FlatList 
+        <FlatList
           data={Object.values(decks)}
-          renderItem={({ item }) => <Deck id={item.title} title={item.title} questions={item.questions} />}
+          renderItem={({ item }) => (
+            <Deck
+              id={item.title}
+              title={item.title}
+              questions={item.questions}
+              navigation={this.props.navigation}
+            />
+          )}
           keyExtractor={item => item.title}
         />
       </View>

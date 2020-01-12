@@ -6,6 +6,8 @@ import reducer from "./reducers";
 import DecksList from "./components/DecksList";
 import NewDeck from "./components/NewDeck";
 import DeckView from "./components/DeckView";
+import AddCard from "./components/AddCard";
+import Quiz from "./components/Quiz";
 import Constants from "expo-constants";
 import {
   createBottomTabNavigator,
@@ -31,7 +33,7 @@ const Tabs = {
     navigationOptions: {
       tabBarLabel: "Decks",
       tabBarIcon: ({ tintColor }) => (
-        <Ionicons name="ios-bookmarks" size={30} color="000" />
+        <Ionicons name="ios-bookmarks" size={30} color="#000" />
       )
     }
   },
@@ -40,7 +42,7 @@ const Tabs = {
     navigationOptions: {
       tabBarLabel: "Add Deck",
       tabBarIcon: ({ tintColor }) => (
-        <FontAwesome name="plus-square" size={30} color="000" />
+        <FontAwesome name="plus-square" size={30} color="#000" />
       )
     }
   }
@@ -76,10 +78,22 @@ const Stack = createStackNavigator({
       title: "Udacicards"
     }
   },
-  SingleDeck: {
+  DeckView: {
     screen: DeckView,
     navigationOptions: {
-      title: "Deck"
+      title: "Deck View"
+    }
+  },
+  AddCard: {
+    screen: AddCard,
+    navigationOptions: {
+      title: "Add Card to Deck"
+    }
+  },
+  Quiz: {
+    screen: Quiz,
+    navigationOptions: {
+      title: "Quiz"
     }
   },
   initialRouteName: "Home"
