@@ -13,15 +13,13 @@ function decks(state = {}, action) {
 
     case ADD_DECK:
       {
-        const o = {
+        return {
           ...state,
           [action.deckTitle]: {
             title: action.deckTitle,
             questions: []
           }
         }
-        return o
-        break;
       }
 
     case ADD_CARD:
