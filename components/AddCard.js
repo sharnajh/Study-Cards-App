@@ -29,14 +29,15 @@ class AddCard extends Component {
           onChangeText={question => this.setState({ question })}
           value={this.state.question}
         />
-        <TextInput
+         <TextInput
           placeholder="Type the answer here"
-          onChange={answer => this.setState({ answer })}
+          onChangeText={answer => this.setState({ answer })}
           value={this.state.answer}
         />
         <TouchableOpacity onPress={this.submitCard}>
           <Text>Add Card to Deck</Text>
         </TouchableOpacity>
+        <Text>{JSON.stringify(this.state)}</Text>
       </View>
     );
   }

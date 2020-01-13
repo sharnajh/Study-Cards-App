@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, SafeAreaView, StatusBar } from "react-native";
+import { View, SafeAreaView, StatusBar, AsyncStorage } from "react-native";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import reducer from "./reducers";
@@ -102,6 +102,9 @@ const Stack = createStackNavigator({
 const MainNavigator = createAppContainer(Stack);
 
 export default class App extends Component {
+  componentDidMount() {
+    AsyncStorage.clear()
+  }
   render() {
     return (
       <Provider store={createStore(reducer)}>
