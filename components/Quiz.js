@@ -54,10 +54,10 @@ class Quiz extends Component {
       return (
         <View style={styles.container}>
           <View
-            style={[styles.card]}
+            style={[styles.card, { justifyContent: "center", textAlign: "center"}]}
             
           >
-            <Text>{`You got ${score} out of ${deck.questions.length} cards correct.`}</Text>
+            <Text style={{ fontSize: 30 }}>{`You got ${score} out of ${deck.questions.length} cards correct.`}</Text>
             <View>
               <Button title="Retake Quiz" onPress={this.onReset} />
               <Button title="Return to Deck" onPress={this.onRenderDeck} />
@@ -71,7 +71,7 @@ class Quiz extends Component {
         <View
           style={[styles.card]}
         >
-          <Text>
+          <Text style={{ fontSize: 20 }}>
             {showAnswer === false
               ? `Question ${questionIndex + 1} of ${questions.length}`
               : "Answer"}
@@ -126,7 +126,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: 20
+    padding: 20,
+    textAlign: "center"
   }
 });
 

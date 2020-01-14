@@ -20,7 +20,8 @@ class DecksList extends Component {
   render() {
     const { decks } = this.props;
     return (
-      <ScrollView>
+      
+        <View>
         <FlatList
           data={Object.values(decks)}
           renderItem={({ item }) => (
@@ -28,7 +29,8 @@ class DecksList extends Component {
           )}
           keyExtractor={item => item.title}
         />
-      </ScrollView>
+        </View>
+     
     );
   }
 }

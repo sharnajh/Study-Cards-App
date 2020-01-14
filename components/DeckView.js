@@ -1,6 +1,13 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Animated } from "react-native";
-import { Button } from "react-native-elements"
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Animated
+} from "react-native";
+import { setLocalNotification, clearLocalNotification } from "../utils/helpers";
+import { Button } from "react-native-elements";
 import { connect } from "react-redux";
 
 class DeckView extends Component {
@@ -23,21 +30,26 @@ class DeckView extends Component {
     navigation.navigate("AddCard", { deck });
   };
   renderQuiz = () => {
+    clearLocalNotification().then(setLocalNotification());
     const { navigation, deck } = this.props;
     navigation.navigate("Quiz", { deck });
   };
   render() {
     const { deck } = this.props;
     return (
-      
       <View style={styles.container}>
         <Animated.View
-          style={[styles.card, { transform: [{ scale: this.state.springValue }] }]}
+          style={[
+            styles.card,
+            { transform: [{ scale: this.state.springValue }] }
+          ]}
         >
           <Text style={{ fontSize: 50 }}>{deck.title}</Text>
           <Text style={{ fontSize: 30 }}>{deck.questions.length} Cards</Text>
           <Button title="Add Card" onPress={this.renderAddCard} />
-          <Button title="Take Quiz" onPress={this.renderQuiz} />
+          {deck.questions.length > 0 && (
+            <Button title="Take Quiz" onPress={this.renderQuiz} />
+          )}
         </Animated.View>
       </View>
     );

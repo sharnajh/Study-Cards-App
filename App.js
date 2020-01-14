@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, SafeAreaView, StatusBar, AsyncStorage } from "react-native";
+import { View, SafeAreaView, StatusBar } from "react-native";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import reducer from "./reducers";
@@ -16,6 +16,7 @@ import {
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
+import { setLocalNotification } from "./utils/helpers"
 
 function UdaciStatusBar({ backgroundColor, ...props }) {
   return (
@@ -103,7 +104,7 @@ const MainNavigator = createAppContainer(Stack);
 
 export default class App extends Component {
   componentDidMount() {
-    AsyncStorage.clear()
+    setLocalNotification()
   }
   render() {
     return (

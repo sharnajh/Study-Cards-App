@@ -5,8 +5,6 @@ import { connect } from "react-redux";
 import { addCardToDeck } from "../utils/API";
 import { addCard } from "../actions";
 
-// Cannot be blank
-
 class AddCard extends Component {
   state = {
     question: "",
@@ -72,7 +70,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = ({ decks }, { navigation }) => {
+const mapStateToProps = ({}, { navigation }) => {
   const { deck } = navigation.state.params;
   return {
     deck
