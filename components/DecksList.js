@@ -3,12 +3,8 @@ import { connect } from "react-redux";
 import { getDecks } from "../utils/API";
 import { loadDecks } from "../actions";
 import {
-  StyleSheet,
-  Text,
   View,
-  ScrollView,
   FlatList,
-  TouchableOpacity
 } from "react-native";
 import DeckItem from "./DeckItem";
 
