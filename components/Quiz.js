@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { Card, Button } from "react-native-elements";
 
 class Quiz extends Component {
@@ -52,46 +52,78 @@ class Quiz extends Component {
       questionIndex + 1 === deck.questions.length
     ) {
       return (
-        <View>
+        <View style={styles.container}>
           <Card
+            containerStyle={styles.card}
             title={`You got ${score} out of ${deck.questions.length} cards correct.`}
           >
-            <Button title="Retake Quiz" onPress={this.onReset} />
-            <Button title="Return to Deck" onPress={this.onRenderDeck} />
+            <View style={styles.cardStyle}>
+              <Button title="Retake Quiz" onPress={this.onReset} />
+              <Button title="Return to Deck" onPress={this.onRenderDeck} />
+            </View>
           </Card>
         </View>
       );
     }
     return (
-      <View>
-        <Card title={`Question ${questionIndex + 1} / ${questions.length}`}>
-          <Text style={{ fontSize: 50, textAlign: "center" }}>
-            {questions[questionIndex].question}
-          </Text>
-
-          {this.state.showAnswer ? (
-            <View>
-              <Text style={{ fontSize: 35, textAlign: "center" }}>
-                {questions[questionIndex].answer}
-              </Text>
+      <View style={styles.container}>
+        <Card
+          containerStyle={styles.card}
+          title={
+            this.state.showAnswer === false
+              ? `Question ${questionIndex + 1} of ${questions.length}`
+              : "Answer"
+          }
+        >
+          <View style={styles.cardStyle}>
+            {this.state.showAnswer === false ? (
               <View>
-                <Button title="Correct" onPress={this.onCorrect} />
-                <Button title="Incorrect" onPress={this.onIncorrect} />
+                <Text style={{ fontSize: 50, textAlign: "center" }}>
+                  {questions[questionIndex].question}
+                </Text>
+                <Button
+                  title="Show Answer"
+                  onPress={() => this.setState({ showAnswer: true })}
+                />
               </View>
-            </View>
-          ) : (
-            <Button
-              title="Show Answer"
-              onPress={() => this.setState({ showAnswer: true })}
-            />
-          )}
-          {/* <Text>{JSON.stringify(questions)}</Text>
-        <Text>Score: {score}</Text>
-        <Text>questionAnswered: {JSON.stringify(questionAnswered)}</Text> */}
+            ) : (
+              <View>
+                <Text style={{ fontSize: 35, textAlign: "center" }}>
+                  {questions[questionIndex].answer}
+                </Text>
+                <View>
+                  <Text style={{ textAlign: "center" }}>
+                    Did you get it right?
+                  </Text>
+                  <Button title="Correct" onPress={this.onCorrect} />
+                  <Button title="Incorrect" onPress={this.onIncorrect} />
+                </View>
+              </View>
+            )}
+          </View>
         </Card>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  card: {
+    width: "90%",
+    height: "70%",
+    borderRadius: 15
+  },
+  cardStyle: {
+    height: "90%",
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center"
+  }
+});
 
 export default Quiz;

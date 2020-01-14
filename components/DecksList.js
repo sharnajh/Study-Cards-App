@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getDecks } from "../utils/API";
 import { loadDecks } from "../actions";
-import { StyleSheet, Text, View, FlatList } from "react-native";
+import { StyleSheet, Text, View, FlatList, TouchableOpacity } from "react-native";
 import DeckItem from "./DeckItem";
 
 class DecksList extends Component {
@@ -25,6 +25,7 @@ class DecksList extends Component {
           keyExtractor={item => item.title}
         />
       </View>
+      
     );
   }
 }
