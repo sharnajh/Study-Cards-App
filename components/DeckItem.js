@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
 class DeckItem extends Component {
   renderDeckView = () => {
@@ -11,14 +11,26 @@ class DeckItem extends Component {
     return (
       <View>
         <TouchableOpacity onPress={this.renderDeckView}>
-          <View>
-            <Text>{deck.title}</Text>
-            <Text>{deck.questions.length} Cards</Text>
+          <View style={styles.deck}>
+            <Text style={{ fontSize: 20, margin: 10 }}>{deck.title}</Text>
+            <Text style={{ fontSize: 15 }}>{deck.questions.length} Cards</Text>
           </View>
         </TouchableOpacity>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  deck: {
+    flex: 1,
+    height: 150,
+    padding: 30,
+    backgroundColor: "#fff",
+    justifyContent: "center",
+    alignItems: "center",
+    borderBottomWidth: 2,
+  }
+})
 
 export default DeckItem;
