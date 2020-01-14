@@ -37,7 +37,6 @@ class AddCard extends Component {
         <TouchableOpacity onPress={this.submitCard}>
           <Text>Add Card to Deck</Text>
         </TouchableOpacity>
-        <Text>{JSON.stringify(this.state)}</Text>
       </View>
     );
   }

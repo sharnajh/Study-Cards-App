@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { Card, Button } from "react-native-elements";
+import { Button } from "react-native-elements";
 
 class Quiz extends Component {
   state = {
     questionIndex: 0,
     score: 0,
     questionAnswered: false,
-    showAnswer: false
+    showAnswer: false,
   };
   next = () => {
     const { deck } = this.props.navigation.state.params;
@@ -46,62 +46,68 @@ class Quiz extends Component {
   render() {
     const { deck } = this.props.navigation.state.params;
     const questions = deck.questions;
-    const { questionIndex, questionAnswered, score } = this.state;
+    const { questionIndex, questionAnswered, score, showAnswer } = this.state;
     if (
       questionAnswered === true &&
       questionIndex + 1 === deck.questions.length
     ) {
       return (
         <View style={styles.container}>
-          <Card
-            containerStyle={styles.card}
-            title={`You got ${score} out of ${deck.questions.length} cards correct.`}
+          <View
+            style={[styles.card]}
+            
           >
-            <View style={styles.cardStyle}>
+            <Text>{`You got ${score} out of ${deck.questions.length} cards correct.`}</Text>
+            <View>
               <Button title="Retake Quiz" onPress={this.onReset} />
               <Button title="Return to Deck" onPress={this.onRenderDeck} />
             </View>
-          </Card>
+          </View>
         </View>
       );
     }
     return (
       <View style={styles.container}>
-        <Card
-          containerStyle={styles.card}
-          title={
-            this.state.showAnswer === false
-              ? `Question ${questionIndex + 1} of ${questions.length}`
-              : "Answer"
-          }
+        <View
+          style={[styles.card]}
         >
-          <View style={styles.cardStyle}>
-            {this.state.showAnswer === false ? (
+          <Text>
+            {showAnswer === false
+              ? `Question ${questionIndex + 1} of ${questions.length}`
+              : "Answer"}
+          </Text>
+          <View>
+            {showAnswer === false ? (
               <View>
                 <Text style={{ fontSize: 50, textAlign: "center" }}>
                   {questions[questionIndex].question}
                 </Text>
-                <Button
-                  title="Show Answer"
-                  onPress={() => this.setState({ showAnswer: true })}
-                />
               </View>
             ) : (
               <View>
                 <Text style={{ fontSize: 35, textAlign: "center" }}>
                   {questions[questionIndex].answer}
                 </Text>
-                <View>
-                  <Text style={{ textAlign: "center" }}>
-                    Did you get it right?
-                  </Text>
-                  <Button title="Correct" onPress={this.onCorrect} />
-                  <Button title="Incorrect" onPress={this.onIncorrect} />
-                </View>
               </View>
             )}
           </View>
-        </Card>
+          <View>
+            {showAnswer === false ? (
+              <Button
+                title="Show Answer"
+                onPress={() => this.setState({ showAnswer: true })}
+              />
+            ) : (
+              <View>
+                <Text style={{ textAlign: "center" }}>
+                  Did you get it right?
+                </Text>
+                <Button title="Correct" onPress={this.onCorrect} />
+                <Button title="Incorrect" onPress={this.onIncorrect} />
+              </View>
+            )}
+          </View>
+        </View>
       </View>
     );
   }
@@ -116,13 +122,11 @@ const styles = StyleSheet.create({
   card: {
     width: "90%",
     height: "70%",
-    borderRadius: 15
-  },
-  cardStyle: {
-    height: "90%",
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center"
+    borderRadius: 15,
+    backgroundColor: "#fff",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: 20
   }
 });
 

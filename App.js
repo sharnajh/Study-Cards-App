@@ -50,10 +50,10 @@ const Tabs = {
 
 const tabOptions = {
   tabBarOptions: {
-    activeTintColor: Platform.OS === "ios" ? "#fff" : "#fff",
+    activeTintColor: "#000",
     style: {
       height: 56,
-      backgroundColor: Platform.OS === "ios" ? "#fff" : "#fff",
+      backgroundColor: "#fff",
       shadowColor: "rgba(0, 0, 0, 0.24)",
       shadowOffset: {
         width: 0,
@@ -110,7 +110,7 @@ export default class App extends Component {
       <Provider store={createStore(reducer)}>
         <Provider store={createStore(reducer)}>
           <View style={{ flex: 1 }}>
-            <UdaciStatusBar backgroundColor="#000" barStyle="light-content" />
+            <UdaciStatusBar backgroundColor="#fff" barStyle="dark-content" />
             <MainNavigator />
           </View>
         </Provider>
