@@ -2,7 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getDecks } from "../utils/API";
 import { loadDecks } from "../actions";
-import { StyleSheet, Text, View, FlatList, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  FlatList,
+  TouchableOpacity
+} from "react-native";
 import DeckItem from "./DeckItem";
 
 class DecksList extends Component {
@@ -13,19 +20,15 @@ class DecksList extends Component {
   render() {
     const { decks } = this.props;
     return (
-      <View>
+      <ScrollView>
         <FlatList
           data={Object.values(decks)}
           renderItem={({ item }) => (
-            <DeckItem
-              navigation={this.props.navigation}
-              deck={item}
-            />
+            <DeckItem navigation={this.props.navigation} deck={item} />
           )}
           keyExtractor={item => item.title}
         />
-      </View>
-      
+      </ScrollView>
     );
   }
 }

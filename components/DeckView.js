@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Animated } from "react-native";
+import { Button } from "react-native-elements"
 import { connect } from "react-redux";
 
 class DeckView extends Component {
@@ -28,18 +29,15 @@ class DeckView extends Component {
   render() {
     const { deck } = this.props;
     return (
+      
       <View style={styles.container}>
         <Animated.View
           style={[styles.card, { transform: [{ scale: this.state.springValue }] }]}
         >
-          <Text>{deck.title}</Text>
-          <Text>{deck.questions.length} Cards</Text>
-          <TouchableOpacity onPress={this.renderAddCard}>
-            <Text>Add Card</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={this.renderQuiz}>
-            <Text>Take Quiz</Text>
-          </TouchableOpacity>
+          <Text style={{ fontSize: 50 }}>{deck.title}</Text>
+          <Text style={{ fontSize: 30 }}>{deck.questions.length} Cards</Text>
+          <Button title="Add Card" onPress={this.renderAddCard} />
+          <Button title="Take Quiz" onPress={this.renderQuiz} />
         </Animated.View>
       </View>
     );
